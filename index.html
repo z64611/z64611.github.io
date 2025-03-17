@@ -9,9 +9,18 @@
         facingMode: { exact: 'environment' } // Force back camera
       }
     };
-    navigator.mediaDevices.getUserMedia(constraints)
-      .then(stream => video.srcObject = stream)
-      .catch(err => alert('Camera error: ' + err.message));
+
+    async function startCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        video.srcObject = stream;
+      } catch (err) {
+        alert('Camera error: ' + err.message);
+      }
+    }
+
+    // Request camera access when the page loads
+    startCamera();
   </script>
 </body>
 </html>
