@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body style="margin: 0; overflow: hidden;">
+  <video id="video" autoplay playsinline style="width: 100vw; height: 100vh; object-fit: cover;"></video>
+  <script>
+    const video = document.getElementById('video');
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => video.srcObject = stream)
+      .catch(err => alert('Camera error: ' + err.message));
+  </script>
+</body>
+</html>
