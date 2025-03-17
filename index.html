@@ -4,7 +4,12 @@
   <video id="video" autoplay playsinline style="width: 100vw; height: 100vh; object-fit: cover;"></video>
   <script>
     const video = document.getElementById('video');
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }) // Use 'environment' for back camera
+    const constraints = {
+      video: {
+        facingMode: { exact: 'environment' } // Force back camera
+      }
+    };
+    navigator.mediaDevices.getUserMedia(constraints)
       .then(stream => video.srcObject = stream)
       .catch(err => alert('Camera error: ' + err.message));
   </script>
